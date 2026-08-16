@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#16001f">
+<title>OFERTÓN · Laptop + Tablet</title>
+<style>
+:root{--yellow:#ffe338;--pink:#ff2f79;--cyan:#31e4ff;--lime:#baff4b;--dark:#100014}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--dark)}
+body{position:fixed;inset:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#fff;overscroll-behavior:none}
+.poster{position:fixed;inset:0;width:100vw;height:100dvh;overflow:hidden;padding:clamp(8px,1.5vmin,16px);display:grid;grid-template-columns:41% 59%;gap:1.3vmin;background:radial-gradient(circle at 10% 10%,#ff2f7955,transparent 30%),radial-gradient(circle at 90% 10%,#31e4ff33,transparent 28%),linear-gradient(135deg,#100014,#320749 52%,#09070f)}
+.poster:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:22px 22px}
+.left,.right{position:relative;z-index:2;min-width:0;min-height:0}
+.left{display:flex;flex-direction:column;justify-content:center;gap:.8vmin;padding:.4vmin}
+.ribbon{align-self:flex-start;background:var(--yellow);color:#220016;font-weight:1000;font-size:clamp(12px,1.7vw,23px);padding:.5em .9em;border-radius:999px;border:3px solid #fff;box-shadow:0 5px 0 var(--pink);transform:rotate(-2deg);animation:wobble 2s ease-in-out infinite}
+.hook{font-size:clamp(14px,1.9vw,28px);font-weight:950}.hook span{color:var(--yellow);animation:beat 1.1s infinite;display:inline-block}
+h1{margin:0;font-size:clamp(46px,7vw,108px);line-height:.8;letter-spacing:-.06em;font-weight:1000;text-transform:uppercase;text-shadow:4px 4px 0 var(--pink),8px 8px 0 #4a1bd7}h1 b{color:var(--yellow)}
+.pitch{margin:.15vmin 0;font-size:clamp(11px,1.4vw,20px);font-weight:800;color:#efffff}
+.combo{width:min(100%,500px);margin-top:.4vmin;background:linear-gradient(145deg,#ffe53c,#ffb71b);color:#260014;border:4px solid #fff;border-radius:2vmin;padding:1vmin 1.2vmin .9vmin;box-shadow:0 0 0 5px var(--pink),0 14px 28px #0007;transform:rotate(.4deg)}
+.combo small{display:block;text-align:center;font-size:clamp(10px,1.25vw,17px);font-weight:1000;letter-spacing:.08em}.price{text-align:center;color:#e90058;font-size:clamp(58px,8vw,124px);line-height:.78;font-weight:1000;letter-spacing:-.08em;text-shadow:2px 2px 0 #fff}.price sup{font-size:.35em;vertical-align:top;position:relative;top:.12em}.deal{text-align:center;background:#220016;color:#fff;border-radius:999px;margin-top:.5vmin;padding:.4em .65em;font-size:clamp(9px,1.05vw,15px);font-weight:950;animation:flash 1.3s infinite}
+.alone{display:grid;grid-template-columns:1fr 1fr;gap:.7vmin;margin-top:.8vmin;width:min(100%,500px)}.alone div{display:flex;justify-content:space-between;align-items:center;gap:.4em;background:#ffffff18;border:1.5px solid #ffffff40;border-radius:1.3vmin;padding:.6vmin .8vmin;font-size:clamp(9px,1.05vw,15px);font-weight:850}.alone strong{color:var(--lime);font-size:1.28em}.ask{font-weight:1000;font-size:clamp(12px,1.5vw,21px);margin-top:.2vmin}.ask b{color:var(--yellow)}
+.right{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:.8vmin}
+.mediaCard{position:relative;min-height:0;overflow:hidden;border-radius:2.5vmin;border:4px solid #fff;background:#050507;box-shadow:0 0 0 5px #31e4ff88,0 18px 38px #0008}
+.mediaCard video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+.videoBadge{position:absolute;left:1vmin;top:1vmin;z-index:3;background:#ff2f79;border:2px solid #fff;border-radius:999px;padding:.45em .75em;font-weight:1000;font-size:clamp(9px,1vw,14px);box-shadow:3px 3px 0 #4a1bd7;animation:beat 1.2s infinite}
+.videoHint{position:absolute;right:1vmin;bottom:1vmin;z-index:3;background:#000b;border:1px solid #ffffff55;border-radius:999px;padding:.4em .7em;font-size:clamp(8px,.8vw,12px);font-weight:850}
+.specWrap{display:grid;grid-template-columns:1.08fr .92fr;gap:.7vmin}
+.spec{background:#ffffff16;border:1.5px solid #ffffff35;border-radius:1.5vmin;padding:.72vmin .9vmin;backdrop-filter:blur(8px);min-width:0}.spec h2{margin:0 0 .15vmin;color:var(--yellow);font-size:clamp(10px,1.15vw,16px)}.spec p{margin:0;font-size:clamp(8px,.92vw,13px);line-height:1.25;font-weight:730;color:#f4fbff}.spec b{color:#fff}
+.tapHint{position:absolute;z-index:20;right:1vmin;top:1vmin;padding:.45em .7em;border-radius:999px;background:#0009;border:1px solid #ffffff44;font-size:clamp(8px,.75vw,11px);font-weight:800;opacity:.7;pointer-events:none}
+.float{position:absolute;z-index:4;font-size:clamp(24px,4vw,62px);filter:drop-shadow(0 0 14px #fff8);animation:float 2.3s ease-in-out infinite}.f1{right:1%;top:3%}.f2{left:39%;bottom:1%;animation-delay:.7s}
+@keyframes beat{50%{transform:scale(1.1)}}@keyframes wobble{50%{transform:rotate(2deg) scale(1.025)}}@keyframes flash{50%{background:var(--pink);transform:scale(1.02)}}@keyframes float{50%{transform:translateY(-8px) rotate(-6deg)}}
+@media (orientation:portrait){
+ .poster{grid-template-columns:1fr;grid-template-rows:39% 61%;gap:.8vmin;padding:8px}
+ .left{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:auto auto 1fr;gap:.25vmin .9vmin;padding:0}
+ .ribbon{grid-column:1;grid-row:1;font-size:clamp(9px,2.4vw,16px)}.hook{grid-column:1;grid-row:2;font-size:clamp(11px,2.7vw,19px)}.headline{grid-column:1;grid-row:3;align-self:center}h1{font-size:clamp(40px,10.5vw,76px)}.pitch{font-size:clamp(9px,2.3vw,15px)}
+ .priceWrap{grid-column:2;grid-row:1/4;align-self:center}.combo{margin:0;border-width:3px;box-shadow:0 0 0 4px var(--pink),0 10px 24px #0007}.price{font-size:clamp(52px,13.5vw,100px)}.combo small{font-size:clamp(8px,2.1vw,14px)}.deal{font-size:clamp(8px,1.8vw,12px)}.alone{margin-top:.7vmin;gap:.4vmin}.alone div{font-size:clamp(7.5px,1.7vw,11px);padding:.5vmin}.ask{text-align:center;font-size:clamp(9px,2vw,14px)}
+ .mediaCard{border-width:3px;box-shadow:0 0 0 4px #31e4ff88,0 12px 26px #0008}.specWrap{gap:.5vmin}.spec{padding:.55vmin .65vmin}.spec h2{font-size:clamp(8.5px,2vw,13px)}.spec p{font-size:clamp(7px,1.65vw,10.5px)}.float{display:none}.tapHint{font-size:8px}
+}
+</style>
+</head>
+<body>
+<main class="poster">
+  <div class="float f1">✨</div><div class="float f2">💖</div>
+  <div class="tapHint" id="tapHint">Toca una vez para pantalla completa</div>
+  <section class="left">
+    <div class="ribbon">🔥 ¡SE VA HOY! 🔥</div>
+    <div class="hook">😍 <span>¡APROVECHA!</span> 😍</div>
+    <div class="headline"><h1>LAPTOP <b>+</b><br>TABLET</h1><p class="pitch">Aquí las ves, aquí las pruebas y aquí te las llevas.</p></div>
+    <div class="priceWrap">
+      <div class="combo"><small>LAS DOS POR SOLO</small><div class="price"><sup>$</sup>1,700</div><div class="deal">💥 ¡MÁS BARATO QUE LA LAPTOP SOLA! 💥</div></div>
+      <div class="alone"><div><span>💻 Laptop</span><strong>$1,800</strong></div><div><span>📱 Tablet</span><strong>$300</strong></div></div>
+      <div class="ask">👀 ¿Te interesan? <b>¡Pregunta aquí!</b></div>
+    </div>
+  </section>
+  <section class="right">
+    <div class="mediaCard">
+      <video id="promoVideo" autoplay muted loop playsinline preload="auto">
+        <source src="./oferta.mp4" type="video/mp4">
+      </video>
+      <div class="videoBadge">👀 VIDEO COMPLETO · MIRA LA OFERTA</div>
+      <div class="videoHint">🔁 Se reproduce en bucle</div>
+    </div>
+    <div class="specWrap">
+      <article class="spec"><h2>💻 LAPTOP WOZIFAN W7</h2><p><b>Intel Celeron N4020C</b> · <b>6 GB RAM</b> · <b>SSD 256 GB</b> (238 GB visibles en Windows) · Intel UHD Graphics 600 · cargador incluido.</p></article>
+      <article class="spec"><h2>📱 SAMSUNG GALAXY TAB A7</h2><p><b>SM-T500</b> · Android 12 · One UI Core 4.1 · Knox 3.8. <b>Es esta misma tablet donde estás viendo el anuncio.</b></p></article>
+    </div>
+  </section>
+</main>
+<script>
+const hint=document.getElementById('tapHint');
+const video=document.getElementById('promoVideo');
+video.play().catch(()=>{});
+let busy=false;
+document.addEventListener('pointerdown',async()=>{
+  if(busy || document.fullscreenElement) return;
+  busy=true;
+  try{
+    if(document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen({navigationUI:'hide'});}
+    if(screen.orientation?.lock){try{await screen.orientation.lock('landscape')}catch(e){}}
+    hint.style.display='none';
+    video.play().catch(()=>{});
+  }catch(e){}
+  setTimeout(()=>busy=false,500);
+},{passive:true});
+</script>
+</body>
+</html>
