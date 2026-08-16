@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#170026">
+<title>OFERTÓN — Laptop + Tablet</title>
+<style>
+  :root{
+    --bg:#16001f;--bg2:#2b0647;--pink:#ff2b78;--yellow:#ffd633;--cyan:#2fe7ff;
+    --white:#fff;--ink:#210016;--green:#b8ff5a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg)}
+  body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:white;touch-action:none;overscroll-behavior:none}
+  .screen{
+    position:fixed;inset:0;width:100vw;height:100vh;height:100svh;overflow:hidden;
+    padding:max(12px,2.1vmin);display:grid;grid-template-columns:42% 58%;gap:2vmin;
+    background:
+      radial-gradient(circle at 12% 16%,rgba(255,43,120,.42),transparent 26%),
+      radial-gradient(circle at 90% 8%,rgba(47,231,255,.24),transparent 24%),
+      linear-gradient(135deg,#120018 0%,#2b0747 52%,#080613 100%);
+  }
+  .screen:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:26px 26px}
+  .left,.right{position:relative;z-index:2;min-width:0;min-height:0}
+  .left{display:flex;flex-direction:column;justify-content:center;gap:1.15vmin;padding:.5vmin 0 .5vmin .5vmin}
+  .badge{align-self:flex-start;background:var(--yellow);color:var(--ink);font-weight:950;font-size:clamp(11px,1.65vw,24px);letter-spacing:.04em;padding:.55em .9em;border-radius:999px;border:3px solid #fff;box-shadow:0 6px 0 #ff2b78;transform:rotate(-2deg);animation:badge 2.1s ease-in-out infinite}
+  .eyes{font-size:clamp(16px,2.05vw,32px);font-weight:900;color:#fff;margin-top:.7vmin;display:flex;align-items:center;gap:.35em}
+  .eyes b{color:var(--yellow);animation:pop 1.2s infinite}
+  h1{margin:0;font-size:clamp(42px,7.4vw,112px);line-height:.78;letter-spacing:-.065em;font-weight:1000;text-transform:uppercase;text-shadow:4px 4px 0 #ff2b78,8px 8px 0 #4d1ed8}
+  h1 span{color:var(--yellow)}
+  .sub{margin:.35vmin 0 0;font-size:clamp(12px,1.55vw,23px);font-weight:800;color:#e9fbff}
+  .priceCard{margin-top:.65vmin;width:100%;max-width:520px;background:linear-gradient(145deg,#ffe341,#ffb51f);color:var(--ink);border-radius:2.6vmin;border:4px solid #fff;padding:1.25vmin 1.4vmin 1.15vmin;box-shadow:0 0 0 6px #ff2b78,0 14px 34px rgba(0,0,0,.36);transform:rotate(.45deg)}
+  .priceTop{text-align:center;font-weight:1000;font-size:clamp(11px,1.45vw,20px);letter-spacing:.08em}
+  .price{text-align:center;color:#e90059;font-weight:1000;font-size:clamp(54px,8.2vw,128px);line-height:.8;letter-spacing:-.075em;text-shadow:2px 2px 0 #fff}
+  .price sup{font-size:.36em;vertical-align:top;position:relative;top:.14em}
+  .save{text-align:center;background:#1d0017;color:#fff;border-radius:999px;padding:.45em .7em;margin-top:.5vmin;font-weight:950;font-size:clamp(10px,1.18vw,17px);animation:save 1.4s infinite}
+  .miniPrices{display:grid;grid-template-columns:1fr 1fr;gap:.8vmin;margin-top:1vmin;max-width:520px}
+  .mini{background:rgba(255,255,255,.11);border:1.5px solid rgba(255,255,255,.26);border-radius:1.5vmin;padding:.75vmin .9vmin;display:flex;align-items:center;justify-content:space-between;gap:.5em;backdrop-filter:blur(8px);font-weight:800;font-size:clamp(10px,1.2vw,17px)}
+  .mini strong{font-size:1.3em;color:var(--green)}
+  .ask{margin-top:.7vmin;font-weight:950;font-size:clamp(12px,1.6vw,24px)}
+  .ask span{color:var(--yellow)}
+
+  .right{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:1.15vmin}
+  .photo{position:relative;min-height:0;border-radius:3vmin;border:4px solid #fff;overflow:hidden;background:#0b0b0f;box-shadow:0 0 0 6px rgba(47,231,255,.6),0 18px 40px rgba(0,0,0,.42)}
+  .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#09090d;opacity:0;transform:scale(1.045);transition:opacity .7s ease,transform 3.2s ease}
+  .slide.active{opacity:1;transform:scale(1)}
+  .photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.66),transparent 30%)}
+  .glint{position:absolute;z-index:4;top:-25%;left:-38%;width:18%;height:150%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);animation:glint 4.6s infinite}
+  .tag{position:absolute;z-index:5;left:1.4vmin;bottom:1.3vmin;background:rgba(255,43,120,.96);border:2px solid #fff;border-radius:999px;padding:.55em .85em;font-size:clamp(10px,1.25vw,18px);font-weight:950;box-shadow:3px 3px 0 #3f1bd7}
+  .dots{position:absolute;z-index:5;right:1.6vmin;bottom:1.7vmin;display:flex;gap:.7vmin}.dot{width:.85vmin;height:.85vmin;min-width:6px;min-height:6px;border-radius:50%;background:rgba(255,255,255,.4)}.dot.active{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
+  .specs{display:grid;grid-template-columns:1.1fr .9fr;gap:1vmin}
+  .spec{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.22);border-radius:1.8vmin;padding:.95vmin 1.1vmin;backdrop-filter:blur(8px);min-width:0}
+  .spec h2{font-size:clamp(11px,1.35vw,19px);margin:0 0 .28vmin;color:var(--yellow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .spec p{font-size:clamp(9px,1.08vw,15px);line-height:1.22;margin:0;font-weight:720;color:#f4fbff}
+  .corner{position:absolute;z-index:1;font-size:clamp(24px,5vw,74px);filter:drop-shadow(0 0 18px rgba(255,255,255,.5));animation:float 2.6s ease-in-out infinite}.c1{right:1.1%;top:1.5%;transform:rotate(9deg)}.c2{left:38.8%;bottom:1.6%;animation-delay:.8s}
+
+  @keyframes pop{50%{transform:scale(1.1);filter:brightness(1.25)}}
+  @keyframes badge{50%{transform:rotate(2deg) scale(1.025)}}
+  @keyframes save{50%{background:#ff2b78;transform:scale(1.02)}}
+  @keyframes glint{0%,55%{left:-38%}100%{left:125%}}
+  @keyframes float{50%{transform:translateY(-8px) rotate(-5deg)}}
+
+  /* Samsung Tab A7 / tablets en vertical */
+  @media (max-aspect-ratio: 4/5){
+    .screen{grid-template-columns:1fr;grid-template-rows:42% 58%;gap:1.3vmin;padding:max(10px,1.6vmin)}
+    .left{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:auto auto 1fr;column-gap:1.6vmin;row-gap:.35vmin;align-items:center;justify-content:initial;padding:0}
+    .badge{grid-column:1/2;grid-row:1;font-size:clamp(10px,2.4vw,18px)}
+    .eyes{grid-column:1/2;grid-row:2;margin:0;font-size:clamp(13px,2.8vw,22px)}
+    .headline{grid-column:1/2;grid-row:3;align-self:center}
+    h1{font-size:clamp(43px,10.8vw,78px);line-height:.8}
+    .sub{font-size:clamp(11px,2.7vw,19px);margin-top:1vmin}
+    .priceWrap{grid-column:2/3;grid-row:1/4;align-self:center}
+    .priceCard{margin:0;max-width:none;padding:1.15vmin;border-width:3px;box-shadow:0 0 0 4px #ff2b78,0 10px 24px rgba(0,0,0,.35)}
+    .priceTop{font-size:clamp(10px,2.6vw,17px)}
+    .price{font-size:clamp(56px,14.5vw,104px)}
+    .save{font-size:clamp(9px,2.25vw,15px)}
+    .miniPrices{margin-top:1.1vmin;gap:.65vmin;max-width:none}.mini{font-size:clamp(9px,2.1vw,14px);padding:.7vmin}
+    .ask{text-align:center;font-size:clamp(11px,2.7vw,18px);margin-top:.8vmin}
+    .right{grid-template-rows:minmax(0,1fr) auto;gap:.8vmin}
+    .photo{border-width:3px;box-shadow:0 0 0 4px rgba(47,231,255,.6),0 12px 26px rgba(0,0,0,.4)}
+    .specs{grid-template-columns:1fr 1fr;gap:.7vmin}.spec{padding:.7vmin .85vmin}.spec h2{font-size:clamp(10px,2.45vw,16px)}.spec p{font-size:clamp(8.5px,2vw,13px)}
+    .tag{font-size:clamp(9px,2.25vw,14px)}
+    .corner{display:none}
+  }
+
+  /* Pantallas bajitas / navegador con barras visibles */
+  @media (max-height:620px) and (min-aspect-ratio:5/4){
+    .screen{padding:8px;gap:10px}.left{gap:4px}.badge{font-size:12px}.eyes{font-size:14px}h1{font-size:50px}.sub{font-size:12px}.priceCard{padding:6px 9px}.price{font-size:62px}.miniPrices{margin-top:6px}.mini{padding:5px 7px;font-size:10px}.ask{font-size:12px}.right{gap:7px}.spec{padding:6px 8px}.spec p{font-size:9px}
+  }
+</style>
+</head>
+<body>
+<main class="screen">
+  <div class="corner c1">✨</div><div class="corner c2">💖</div>
+
+  <section class="left">
+    <div class="badge">🔥 ¡OFERTA DE HOY! 🔥</div>
+    <div class="eyes">😍 <b>¡APROVECHA!</b> 😍</div>
+    <div class="headline">
+      <h1>LAPTOP <span>+</span><br>TABLET</h1>
+      <p class="sub">Dos equipos, un precio que se va YA.</p>
+    </div>
+
+    <div class="priceWrap">
+      <div class="priceCard">
+        <div class="priceTop">LLÉVATE LAS DOS POR</div>
+        <div class="price"><sup>$</sup>1,700</div>
+        <div class="save">💥 ¡$400 MENOS QUE POR SEPARADO! 💥</div>
+      </div>
+      <div class="miniPrices">
+        <div class="mini"><span>💻 Laptop</span><strong>$1,800</strong></div>
+        <div class="mini"><span>📱 Tablet</span><strong>$300</strong></div>
+      </div>
+      <div class="ask">👀 ¿Te gustó? <span>¡Pregunta aquí mismo!</span></div>
+    </div>
+  </section>
+
+  <section class="right">
+    <div class="photo">
+      <img class="slide active" src="./1000013859.jpg" alt="Laptop Wozifan W7 encendida">
+      <img class="slide" src="./1000013856.jpg" alt="Laptop Wozifan W7 abierta">
+      <img class="slide" src="./1000013855.jpg" alt="Laptop Wozifan W7 con cargador">
+      <img class="slide" src="./1000013858.jpg" alt="Especificaciones de la laptop">
+      <img class="slide" src="./1000013857.jpg" alt="Especificaciones de la laptop">
+      <img class="slide" src="./1000023059.jpg" alt="Samsung Galaxy Tab A7">
+      <img class="slide" src="./1000023058.jpg" alt="Información Samsung Galaxy Tab A7">
+      <div class="glint"></div>
+      <div class="tag" id="tag">💻 WOZIFAN W7 · LISTA PARA LLEVAR</div>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <div class="specs">
+      <article class="spec">
+        <h2>💻 Laptop Wozifan W7</h2>
+        <p><b>Intel Celeron N4020C</b> · 6 GB RAM · SSD 256 GB · Intel UHD Graphics 600 · cargador incluido.</p>
+      </article>
+      <article class="spec">
+        <h2>📱 Samsung Galaxy Tab A7</h2>
+        <p><b>SM-T500</b> · Android 12 · One UI Core 4.1 · Knox 3.8.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const labels=[
+    '💻 WOZIFAN W7 · LISTA PARA LLEVAR',
+    '💻 LAPTOP ABIERTA · FOTOS REALES',
+    '🔌 INCLUYE CARGADOR',
+    '⚙️ 6 GB RAM · SSD 256 GB',
+    '⚙️ INTEL CELERON N4020C',
+    '📱 SAMSUNG GALAXY TAB A7',
+    '⚙️ ANDROID 12 · SM-T500'
+  ];
+  const tag=document.getElementById('tag');
+  const dotsBox=document.getElementById('dots');
+  slides.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i===0?' active':'');dotsBox.appendChild(d)});
+  const dots=[...document.querySelectorAll('.dot')];
+  let current=0;
+  function show(n){slides[current].classList.remove('active');dots[current].classList.remove('active');current=n;slides[current].classList.add('active');dots[current].classList.add('active');tag.textContent=labels[current]}
+  setInterval(()=>show((current+1)%slides.length),2600);
+
+  // Si alguna foto no existe en GitHub, simplemente se omite y el cartel sigue funcionando.
+  slides.forEach((img,i)=>img.addEventListener('error',()=>{img.style.display='none';console.warn('No se encontró:',img.getAttribute('src'))}));
+</script>
+</body>
+</html>
